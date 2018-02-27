@@ -1,0 +1,16 @@
+# Pashua dialog config
+message.type = text
+message.default = Please complete the form
+name.type = textfield
+name.label = First & Last Name
+name.mandatory = true
+email.type = textfield
+email.label = Email Address
+email.mandatory = true
+age.type = textfield
+age.label = Age
+age.mandatory = true
+agree.type = checkbox
+agree.label = Do You Agree Evading Your Privacy?
+cb.type = cancelbutton
+db.type = defaultbutton
