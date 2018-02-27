@@ -17,12 +17,24 @@ on «event PASHCMPL» new_path
 	set pashua_binary to (POSIX path of new_path) & "Contents/MacOS/Pashua"
 end «event PASHCMPL»
 
-on «event PASHDIDI» config
-	local result_lines, record_result
+on «event PASHDIDI» config given «class Dyva»:value_record : missing value
+	local config_text, config_dynamic_text, result_lines, result_dict
+
+	if value_record is not missing value then
+		if class of config is alias then
+			set config_text to do_shell_with_log("read config", "cat " & quoted form of POSIX path of config)
+		else if class of config is text then
+			set config_text to config
+		else
+			error "Call this method with either 'text' of 'alias', not with '" & (class of config) & "'" number 1000
+		end if
+		set config_dynamic_text to value_record_to_config(value_record)
+		set config to config_text & linefeed & config_dynamic_text
+	end if
 
 	set result_lines to _call_pashua("display pashua dialog", config)
-	set record_result to _ini_to_dictionary(result_lines)
-	return record_result as record
+	set result_dict to _ini_to_dictionary(result_lines)
+	return result_dict as record
 end «event PASHDIDI»
 
 
@@ -30,7 +42,7 @@ end «event PASHDIDI»
 
 --| Call to show a Pashua dialog
 --| api_name: just a string, used for logging (so the user can see where the call came from)
---| config: text or file/alias
+--| config: text or alias
 --| returns: a record
 on _call_pashua(api_name, config)
 	local pashua_cmd, pashua_res, result_lines
@@ -77,6 +89,8 @@ on _ini_to_dictionary(ini_lines as list)
 end _ini_to_dictionary
 
 on _parse_pashua_result_line(result_line)
+	local post, key_string, value_string
+
 	set pos to offset of "=" in result_line
 	set key_string to text 1 thru (pos - 1) of result_line
 	if (count of result_line) ≤ pos then
@@ -86,6 +100,54 @@ on _parse_pashua_result_line(result_line)
 	end if
 	return {key_string, value_string}
 end _parse_pashua_result_line
+
+-- converts a record to a Pashua-config text. Rules for any given key:value-pair
+-- * key == "*": shortcut for "*.title" => "*.title={value}"
+-- a key without a ".":
+-- + when value is a a string: the default-attribute it is assumed => "{key}.default={value}"
+-- + when value is a a list: the option-attribute it is assumed => "{key}.option={value}"
+-- a key with a ".": => "{key}={value}" (when key is a list, every item becomes a line)
+on value_record_to_config(value_record)
+	local config_lines, value_dict, all_keys, the_key_text, dict_value, value_text
+
+	set config_lines to {}
+	set value_dict to current application's NSDictionary's dictionaryWithDictionary:value_record
+	set all_keys to value_dict's allKeys()
+	repeat with key_text in all_keys
+		set the_key_text to contents of key_text as text
+		set dict_value to (value_dict's valueForKey:the_key_text)
+		--TODO: do proper type checking instead of try and fail
+		try
+			set value_text to dict_value as text
+			copy key_value_to_config_line(the_key_text, value_text, false) to the end of config_lines
+		on error number -1700
+			set value_list to dict_value as list
+			repeat with value_text in value_list
+				copy key_value_to_config_line(the_key_text, contents of value_text, true) to the end of config_lines
+			end repeat
+		end try
+	end repeat
+	return join_list(config_lines, linefeed)
+end value_record_to_config
+
+on key_value_to_config_line(key_text, value_text, is_from_list)
+	local config_line
+
+	if key_text is "*" then
+		set config_line to "*.title="
+	else if key_text contains "." then
+		set config_line to key_text & "="
+	else
+		if is_from_list then
+			set config_line to key_text & ".option="
+		else
+			set config_line to key_text & ".default="
+		end if
+	end if
+	--TODO: smart processing of linefeed/return to "\n" and/or "[return]"?
+	set config_line to config_line & value_text
+	return config_line
+end key_value_to_config_line
 
 
 --» 3. Generic utility handlers (list/string/alias/log

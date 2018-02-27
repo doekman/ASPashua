@@ -16,6 +16,10 @@
 	<string>2.0</string>
 	<key>SDCocoaTermsInProperties</key>
 	<true/>
+	<key>SDExpressions</key>
+	<array>
+		<string>record_result as record</string>
+	</array>
 	<key>SDFolds</key>
 	<string>YnBsaXN0MDDUAQIDBAUGFBVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0
 b3ASAAGGoKMHCA1VJG51bGzSCQoLDFpOUy5vYmplY3RzViRjbGFzc6CAAtIODxAR
@@ -38,14 +42,14 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 		<real>0.80000001192092896</real>
 		<key>viewControllers</key>
 		<dict>
-			<key>2C17AC4A-4CCA-445F-8EED-CFA81E06BBCE-1208-00003BEA7DDA5BBE</key>
+			<key>23BE708A-1C14-4FB1-B731-C279A085FE9B-21747-0001A99C3570F5C7</key>
 			<dict>
 				<key>debuggerViewState</key>
 				<dict>
 					<key>expressionsState</key>
 					<dict>
 						<key>dividerPos</key>
-						<real>150</real>
+						<real>179.5</real>
 						<key>scope2.changedItems</key>
 						<true/>
 						<key>scope2.emptyElements</key>
@@ -65,22 +69,39 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>333</integer>
-								<integer>422</integer>
-								<integer>166</integer>
+								<integer>351</integer>
+								<integer>448</integer>
+								<integer>175</integer>
 							</array>
 							<key>5</key>
 							<array>
-								<integer>248</integer>
-								<integer>100</integer>
-								<integer>315</integer>
-								<integer>80</integer>
-								<integer>124</integer>
+								<integer>274</integer>
+								<integer>109</integer>
+								<integer>349</integer>
+								<integer>88</integer>
+								<integer>137</integer>
 							</array>
 						</dict>
 					</dict>
 					<key>resultState</key>
 					<dict>
+						<key>explorerState</key>
+						<dict>
+							<key>dividerPos</key>
+							<real>150</real>
+							<key>scope2.changedItems</key>
+							<true/>
+							<key>scope2.emptyElements</key>
+							<false/>
+							<key>scope2.filledElements</key>
+							<true/>
+							<key>scope2.props</key>
+							<true/>
+							<key>scope2.unchangedItems</key>
+							<true/>
+							<key>showScopeBar</key>
+							<true/>
+						</dict>
 						<key>modes</key>
 						<array>
 							<string>mode.best</string>
@@ -92,6 +113,31 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						</dict>
 						<key>prettyPrint</key>
 						<false/>
+						<key>sourceState</key>
+						<dict>
+							<key>text</key>
+							<dict>
+								<key>LNSSelection</key>
+								<array>
+									<dict>
+										<key>length</key>
+										<integer>0</integer>
+										<key>location</key>
+										<integer>2</integer>
+									</dict>
+								</array>
+								<key>LNSTextViewShowInvisibles</key>
+								<false/>
+								<key>LNSTextViewShowSpaces</key>
+								<false/>
+								<key>LNSTextViewShowTabStops</key>
+								<false/>
+								<key>LNSTextViewWrapLines</key>
+								<true/>
+								<key>LNSVisibleRect</key>
+								<string>{{0, 0}, {424, 244.5}}</string>
+							</dict>
+						</dict>
 					</dict>
 					<key>stackVisible</key>
 					<false/>
@@ -162,7 +208,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>mainSplitPosition</key>
 				<real>440</real>
 				<key>modeIdentifier</key>
-				<string>tab.rsrcs</string>
+				<string>tab.debug</string>
 				<key>resourcesViewState</key>
 				<dict>
 					<key>heights2</key>
@@ -171,8 +217,8 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>326</integer>
-								<integer>629</integer>
+								<integer>296</integer>
+								<integer>570</integer>
 							</array>
 						</dict>
 					</dict>
@@ -196,7 +242,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>0</integer>
+								<integer>1457</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -208,7 +254,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 0}, {1434, 922}}</string>
+						<string>{{0, 198}, {1562, 973}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -230,14 +276,14 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 					<key>tab.debug</key>
 					<real>439</real>
 					<key>tab.rsrcs</key>
-					<real>433</real>
+					<real>439</real>
 				</dict>
 				<key>tabsHidden</key>
 				<false/>
 				<key>windowControllerID</key>
-				<string>2C17AC4A-4CCA-445F-8EED-CFA81E06BBCE-1208-00003BEA7DDA5BBE</string>
+				<string>23BE708A-1C14-4FB1-B731-C279A085FE9B-21747-0001A99C3570F5C7</string>
 				<key>windowFrame</key>
-				<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+				<string>0 53 2048 1076 0 0 2048 1129 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -246,13 +292,13 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>controllerClass</key>
 				<string>ScriptWindowController</string>
 				<key>controllerID</key>
-				<string>2C17AC4A-4CCA-445F-8EED-CFA81E06BBCE-1208-00003BEA7DDA5BBE</string>
+				<string>23BE708A-1C14-4FB1-B731-C279A085FE9B-21747-0001A99C3570F5C7</string>
 				<key>controllerState</key>
 				<dict>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+					<string>0 53 2048 1076 0 0 2048 1129 </string>
 				</dict>
 			</dict>
 		</array>

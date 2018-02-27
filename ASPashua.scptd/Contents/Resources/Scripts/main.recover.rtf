@@ -82,10 +82,96 @@
 \b \cf2 on
 \b0 \cf2  
 \b \cf4 display pashua dialog
-\b0 \cf2  \cf6 config\cf2 \
+\b0 \cf2  \cf6 config\cf2  \cf4 dynamic values\cf2  \cf6 value_record\cf2  : 
+\i \cf4 missing value
+\i0 \cf2 \
 	
 \b \cf2 local
-\b0 \cf2  \cf6 result_lines\cf2 , \cf6 record_result\cf2 \
+\b0 \cf2  \cf6 config_text\cf2 , \cf6 config_dynamic_text\cf2 , \cf6 result_lines\cf2 , \cf6 result_dict\cf2 \
+	\
+	
+\b \cf2 if
+\b0 \cf2  \cf6 value_record\cf2  
+\b \cf2 is
+\b0 \cf2  
+\b \cf2 not
+\b0 \cf2  
+\i \cf4 missing value
+\i0 \cf2  
+\b \cf2 then
+\b0 \cf2 \
+		
+\b \cf2 if
+\b0 \cf2  
+\i \cf4 class
+\i0 \cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2  
+\b \cf2 is
+\b0 \cf2  
+\i \cf4 alias
+\i0 \cf2  
+\b \cf2 then
+\b0 \cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 config_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf2 "read config"\cf2 , \cf2 "cat "\cf2  & \cf3 quoted form\cf2  
+\b \cf2 of
+\b0 \cf2  \cf3 POSIX path\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2 )\
+		
+\b \cf2 else
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2  
+\i \cf4 class
+\i0 \cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2  
+\b \cf2 is
+\b0 \cf2  
+\i \cf4 text
+\i0 \cf2  
+\b \cf2 then
+\b0 \cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 config_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 config\cf2 \
+		
+\b \cf2 else
+\b0 \cf2 \
+			
+\b \cf2 error
+\b0 \cf2  \cf2 "Call this method with either 'text' of 'alias', not with '"\cf2  & (
+\i \cf4 class
+\i0 \cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2 ) & \cf2 "'"\cf2  \cf4 number\cf2  \cf2 1000\cf2 \
+		
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
+		
+\b \cf2 set
+\b0 \cf2  \cf6 config_dynamic_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf7 value_record_to_config\cf2 (\cf6 value_record\cf2 )\
+		
+\b \cf2 set
+\b0 \cf2  \cf6 config\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 config_text\cf2  & \cf3 linefeed\cf2  & \cf6 config_dynamic_text\cf2 \
+	
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
 	\
 	
 \b \cf2 set
@@ -94,12 +180,12 @@
 \b0 \cf2  \cf7 _call_pashua\cf2 (\cf2 "display pashua dialog"\cf2 , \cf6 config\cf2 )\
 	
 \b \cf2 set
-\b0 \cf2  \cf6 record_result\cf2  
+\b0 \cf2  \cf6 result_dict\cf2  
 \b \cf2 to
 \b0 \cf2  \cf7 _ini_to_dictionary\cf2 (\cf6 result_lines\cf2 )\
 	
 \b \cf2 return
-\b0 \cf2  \cf6 record_result\cf2  
+\b0 \cf2  \cf6 result_dict\cf2  
 \b \cf2 as
 \b0 \cf2  
 \i \cf4 record
@@ -115,7 +201,7 @@
 \
 \cf5 --| Call to show a Pashua dialog\cf2 \
 \cf5 --| api_name: just a string, used for logging (so the user can see where the call came from)\cf2 \
-\cf5 --| config: text or file/alias\cf2 \
+\cf5 --| config: text or alias\cf2 \
 \cf5 --| returns: a record\cf2 \
 
 \b \cf2 on
@@ -305,6 +391,10 @@
 \b \cf2 on
 \b0 \cf2  \cf7 _parse_pashua_result_line\cf2 (\cf6 result_line\cf2 )\
 	
+\b \cf2 local
+\b0 \cf2  \cf6 post\cf2 , \cf6 key_string\cf2 , \cf6 value_string\cf2 \
+	\
+	
 \b \cf2 set
 \b0 \cf2  \cf6 pos\cf2  
 \b \cf2 to
@@ -363,6 +453,220 @@
 
 \b \cf2 end
 \b0 \cf2  \cf7 _parse_pashua_result_line\cf2 \
+\
+\cf5 -- converts a record to a Pashua-config text. Rules for any given key:value-pair\cf2 \
+\cf5 -- * key == "*": shortcut for "*.title" => "*.title=\{value\}"\cf2 \
+\cf5 -- a key without a ".": \cf2 \
+\cf5 -- + when value is a a string: the default-attribute it is assumed => "\{key\}.default=\{value\}"\cf2 \
+\cf5 -- + when value is a a list: the option-attribute it is assumed => "\{key\}.option=\{value\}"\cf2 \
+\cf5 -- a key with a ".": => "\{key\}=\{value\}" (when key is a list, every item becomes a line)\cf2 \
+
+\b \cf2 on
+\b0 \cf2  \cf7 value_record_to_config\cf2 (\cf6 value_record\cf2 )\
+	
+\b \cf2 local
+\b0 \cf2  \cf6 config_lines\cf2 , \cf6 value_dict\cf2 , \cf6 all_keys\cf2 , \cf6 the_key_text\cf2 , \cf6 dict_value\cf2 , \cf6 value_text\cf2 \
+	\
+	
+\b \cf2 set
+\b0 \cf2  \cf6 config_lines\cf2  
+\b \cf2 to
+\b0 \cf2  \{\}\
+	
+\b \cf2 set
+\b0 \cf2  \cf6 value_dict\cf2  
+\b \cf2 to
+\b0 \cf2  
+\i \cf3 current application's
+\i0 \cf2  \cf6 NSDictionary's\cf2  \cf7 dictionaryWithDictionary\cf2 :\cf6 value_record\cf2 \
+	
+\b \cf2 set
+\b0 \cf2  \cf6 all_keys\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 value_dict's\cf2  \cf7 allKeys\cf2 ()\
+	
+\b \cf2 repeat
+\b0 \cf2  
+\b \cf2 with
+\b0 \cf2  \cf6 key_text\cf2  
+\b \cf2 in
+\b0 \cf2  \cf6 all_keys\cf2 \
+		
+\b \cf2 set
+\b0 \cf2  \cf6 the_key_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf3 contents\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 key_text\cf2  
+\b \cf2 as
+\b0 \cf2  
+\i \cf4 text
+\i0 \cf2 \
+		
+\b \cf2 set
+\b0 \cf2  \cf6 dict_value\cf2  
+\b \cf2 to
+\b0 \cf2  (\cf6 value_dict's\cf2  \cf7 valueForKey\cf2 :\cf6 the_key_text\cf2 )\
+		\cf5 --TODO: do proper type checking instead of try and fail\cf2 \
+		
+\b \cf2 try
+\b0 \cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 value_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 dict_value\cf2  
+\b \cf2 as
+\b0 \cf2  
+\i \cf4 text
+\i0 \cf2 \
+			
+\b \cf2 copy
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf6 value_text\cf2 , 
+\i \cf3 false
+\i0 \cf2 ) 
+\b \cf2 to
+\b0 \cf2  
+\b \cf2 the
+\b0 \cf2  
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config_lines\cf2 \
+		
+\b \cf2 on
+\b0 \cf2  
+\b \cf2 error
+\b0 \cf2  \cf4 number\cf2  -\cf2 1700\cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 value_list\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 dict_value\cf2  
+\b \cf2 as
+\b0 \cf2  
+\i \cf4 list
+\i0 \cf2 \
+			
+\b \cf2 repeat
+\b0 \cf2  
+\b \cf2 with
+\b0 \cf2  \cf6 value_text\cf2  
+\b \cf2 in
+\b0 \cf2  \cf6 value_list\cf2 \
+				
+\b \cf2 copy
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf3 contents\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 value_text\cf2 , 
+\i \cf3 true
+\i0 \cf2 ) 
+\b \cf2 to
+\b0 \cf2  
+\b \cf2 the
+\b0 \cf2  
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config_lines\cf2 \
+			
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 repeat
+\b0 \cf2 \
+		
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 try
+\b0 \cf2 \
+	
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 repeat
+\b0 \cf2 \
+	
+\b \cf2 return
+\b0 \cf2  \cf7 join_list\cf2 (\cf6 config_lines\cf2 , \cf3 linefeed\cf2 )\
+
+\b \cf2 end
+\b0 \cf2  \cf7 value_record_to_config\cf2 \
+\
+
+\b \cf2 on
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 key_text\cf2 , \cf6 value_text\cf2 , \cf6 is_from_list\cf2 )\
+	
+\b \cf2 local
+\b0 \cf2  \cf6 config_line\cf2 \
+	\
+	
+\b \cf2 if
+\b0 \cf2  \cf6 key_text\cf2  
+\b \cf2 is
+\b0 \cf2  \cf2 "*"\cf2  
+\b \cf2 then
+\b0 \cf2 \
+		
+\b \cf2 set
+\b0 \cf2  \cf6 config_line\cf2  
+\b \cf2 to
+\b0 \cf2  \cf2 "*.title="\cf2 \
+	
+\b \cf2 else
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2  \cf6 key_text\cf2  
+\b \cf2 contains
+\b0 \cf2  \cf2 "."\cf2  
+\b \cf2 then
+\b0 \cf2 \
+		
+\b \cf2 set
+\b0 \cf2  \cf6 config_line\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 key_text\cf2  & \cf2 "="\cf2 \
+	
+\b \cf2 else
+\b0 \cf2 \
+		
+\b \cf2 if
+\b0 \cf2  \cf6 is_from_list\cf2  
+\b \cf2 then
+\b0 \cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 config_line\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 key_text\cf2  & \cf2 ".option="\cf2 \
+		
+\b \cf2 else
+\b0 \cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 config_line\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 key_text\cf2  & \cf2 ".default="\cf2 \
+		
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
+	
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
+	\cf5 --TODO: smart processing of linefeed/return to "\\n" and/or "[return]"?\cf2 \
+	
+\b \cf2 set
+\b0 \cf2  \cf6 config_line\cf2  
+\b \cf2 to
+\b0 \cf2  \cf6 config_line\cf2  & \cf6 value_text\cf2 \
+	
+\b \cf2 return
+\b0 \cf2  \cf6 config_line\cf2 \
+
+\b \cf2 end
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 \
 \
 \
 \cf5 --\'bb 3. Generic utility handlers (list/string/alias/log\cf2 \
