@@ -1,4 +1,3 @@
-#@osa-lang:AppleScript
 use script "ASPashua"
 use scripting additions
 

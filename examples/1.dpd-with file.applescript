@@ -1,8 +1,7 @@
-#@osa-lang:AppleScript
 -- The following line is needed to use ASPashua
 use script "ASPashua"
 -- When you don't have any "use" statements, the following is included automatically.
--- When including ASPashua, you need to add this when using standard things
+-- When including ASPashua, you need to add this when using standard things 
 -- like "display alert" or "path to me"
 use scripting additions
 
