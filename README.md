@@ -27,6 +27,10 @@ To enable the logging, run the following on the command line:
 
 	defaults write com.catsdeep.ASPashua do_log -bool TRUE
 
+To instruct `make install` to embed `Pashua.app` into the built target, execute:
+
+	defaults write com.catsdeep.ASPashua embed -bool TRUE
+
 This will log the input and output of the _Pashua.app_-call to the log file `~/Library/Logs/Catsdeep/ASPashua.log`. The file can be easily inspected with macOS' _Console.app_.
 
 Other commands:
