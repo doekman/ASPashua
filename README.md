@@ -33,11 +33,12 @@ To instruct `make install` to embed `Pashua.app` into the built target, execute:
 
 This will log the input and output of the _Pashua.app_-call to the log file `~/Library/Logs/Catsdeep/ASPashua.log`. The file can be easily inspected with macOS' _Console.app_.
 
-Other commands:
+Inspect settings:
 
-	#inspect settings
 	defaults read com.catsdeep.ASPashua
-	#revert settings to default
+
+Revert settings to default:
+
 	defaults delete com.catsdeep.ASPashua
 	
 

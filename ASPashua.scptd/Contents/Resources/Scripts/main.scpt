@@ -201,7 +201,7 @@ on do_shell_with_log(title, command)
 		do_log(title & " RESULT [" & shell_result & "]")
 	on error err_msg number err_nr
 		do_log(title & " RESULT, EXIT CODE " & err_nr & ", error message [" & err_msg & "]")
-		error error_msg number err_nr
+		error err_msg number err_nr
 	end try
 	return shell_result
 end do_shell_with_log
