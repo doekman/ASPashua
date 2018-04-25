@@ -6,6 +6,9 @@ LIBSOURCE=$(CURDIR)/$(NAME).scptd
 LIBTARGET=$(BUILD)/$(NAME).scptd
 BINTARGET=$(LIBTARGET)/Contents/Resources/bin/
 EMBED:=$(shell defaults read com.catsdeep.ASPashua embed 2> /dev/null  || echo "0")
+help:
+	@echo "Targets: build, clean, install, uninstall."
+	@echo "Setting: EMBED=${EMBED}."
 build:
 	@echo "Building..."
 	@if [[ -d "${LIBTARGET}" ]]; then rm -Rf "${LIBTARGET}"; fi
@@ -30,4 +33,4 @@ install: build uninstall
 uninstall:
 	@echo "Uninstalling..."
 	@if [[ -d "${SCRLIB}/${NAME}.scptd" ]]; then rm -Rf "${SCRLIB}/${NAME}.scptd"; fi
-.PHONY: build clean install uninstall
+.PHONY: help build clean install uninstall
