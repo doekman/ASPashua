@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>SD4Version</key>
-	<string>6.0.7</string>
+	<string>7.0.2</string>
 	<key>SD5ConversionOffered</key>
 	<false/>
+	<key>SDAddUsedLibrariesOnExport</key>
+	<integer>0</integer>
 	<key>SDAutoIncBuildNumber</key>
 	<false/>
 	<key>SDBreakOnExceptions</key>
@@ -16,6 +18,8 @@
 	<string>2.0</string>
 	<key>SDCocoaTermsInProperties</key>
 	<true/>
+	<key>SDCodesignOnlyOnExport</key>
+	<false/>
 	<key>SDExpressions</key>
 	<array>
 		<string>record_result as record</string>
@@ -30,8 +34,6 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 	<false/>
 	<key>SDPersistentGlobals</key>
 	<false/>
-	<key>SDRunInForeground</key>
-	<true/>
 	<key>SDWindowState</key>
 	<dict>
 		<key>eventLogWindow</key>
@@ -69,9 +71,9 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>324</integer>
-								<integer>416</integer>
-								<integer>163</integer>
+								<integer>460</integer>
+								<integer>591</integer>
+								<integer>232</integer>
 							</array>
 							<key>5</key>
 							<array>
@@ -208,7 +210,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>mainSplitPosition</key>
 				<real>440</real>
 				<key>modeIdentifier</key>
-				<string>tab.debug</string>
+				<string>tab.rsrcs</string>
 				<key>resourcesViewState</key>
 				<dict>
 					<key>heights2</key>
@@ -217,8 +219,8 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>296</integer>
-								<integer>570</integer>
+								<integer>449</integer>
+								<integer>865</integer>
 							</array>
 						</dict>
 					</dict>
@@ -227,9 +229,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>expanded</key>
 						<array/>
 						<key>selection</key>
-						<array>
-							<string>/Users/doeke/prj/GitHub/ASPashua/ASPashua.scptd/Contents/Resources/ASPashua.sdef</string>
-						</array>
+						<array/>
 					</dict>
 				</dict>
 				<key>scriptViewState</key>
@@ -242,7 +242,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>7719</integer>
+								<integer>5503</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -254,7 +254,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 2808}, {1434, 861}}</string>
+						<string>{{0, 1623.5}, {2074, 1282}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -283,7 +283,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>windowControllerID</key>
 				<string>23BE708A-1C14-4FB1-B731-C279A085FE9B-21747-0001A99C3570F5C7</string>
 				<key>windowFrame</key>
-				<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+				<string>0 53 2560 1364 0 0 2560 1417 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -298,7 +298,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+					<string>0 53 2560 1364 0 0 2560 1417 </string>
 				</dict>
 			</dict>
 		</array>

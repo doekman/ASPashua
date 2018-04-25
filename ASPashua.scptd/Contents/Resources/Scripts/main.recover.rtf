@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
 {\fonttbl\f0\fnil\fcharset0 Verdana;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red108\green5\blue211;\red0\green0\blue255;
 \red76\green78\blue78;\red64\green128\blue0;\red251\green0\blue7;\red0\green22\blue176;\red68\green21\blue176;
@@ -24,9 +24,7 @@
 \i0 \cf2  \cf2 "Foundation"\cf2 \
 \
 \cf5 --\'bb 1. Public handlers\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\
 
 \b \cf2 on
 \b0 \cf2  
@@ -58,8 +56,7 @@
 			
 \b \cf2 error
 \b0 \cf2  \cf2 "New path to Pashua.app does not exist"\cf2  \cf4 number\cf2  \cf2 1003\cf2  \cf4 from\cf2  \cf6 new_path\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
@@ -69,8 +66,7 @@
 \b0 \cf2  
 \b \cf2 tell
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 set
 \b0 \cf2  \cf6 pashua_binary\cf2  
 \b \cf2 to
@@ -122,13 +118,12 @@
 \b \cf2 set
 \b0 \cf2  \cf6 config_text\cf2  
 \b \cf2 to
-\b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf2 "read config"\cf2 , \cf2 "cat "\cf2  & \cf3 quoted form\cf2  
+\b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf2 "read config alias"\cf2 , \cf2 "cat "\cf2  & \cf3 quoted form\cf2  
 \b \cf2 of
 \b0 \cf2  \cf3 POSIX path\cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 else
 \b0 \cf2  
 \b \cf2 if
@@ -143,32 +138,50 @@
 \i0 \cf2  
 \b \cf2 then
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
+\b \cf2 if
+\b0 \cf2  \cf6 config\cf2  
+\b \cf2 starts with
+\b0 \cf2  \cf2 "/"\cf2  
+\b \cf2 then
+\b0 \cf2 \
+				\cf5 -- Auto-detection. Pashua config never starts with a slash\cf2 \
+				
+\b \cf2 set
+\b0 \cf2  \cf6 config_text\cf2  
+\b \cf2 to
+\b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf2 "read config posix"\cf2 , \cf2 "cat "\cf2  & \cf3 quoted form\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2 )\
+			
+\b \cf2 else
+\b0 \cf2 \
+				
 \b \cf2 set
 \b0 \cf2  \cf6 config_text\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 config\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+			
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
+		
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 error
 \b0 \cf2  \cf2 "Call this method with either 'text' of 'alias', not with '"\cf2  & (
 \i \cf4 class
 \i0 \cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config\cf2 ) & \cf2 "'"\cf2  \cf4 number\cf2  \cf2 1000\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 config_dynamic_text\cf2  
 \b \cf2 to
@@ -178,15 +191,13 @@
 \b0 \cf2  \cf6 config\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 config_text\cf2  & \cf3 linefeed\cf2  & \cf6 config_dynamic_text\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
 	\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 set
 \b0 \cf2  \cf6 result_lines\cf2  
 \b \cf2 to
@@ -211,13 +222,11 @@
 \
 \
 \cf5 --\'bb 2. Private handlers\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
+\
 \cf5 --| Call to show a Pashua dialog\cf2 \
 \cf5 --| api_name: just a string, used for logging (so the user can see where the call came from)\cf2 \
 \cf5 --| config: text or alias\cf2 \
 \cf5 --| returns: a record\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 _call_pashua\cf2 (\cf6 api_name\cf2 , \cf6 config\cf2 )\
@@ -230,11 +239,9 @@
 \b0 \cf2  \cf6 pashua_binary\cf2  
 \b \cf2 to
 \b0 \cf2  \cf7 _get_pashua_posix_path\cf2 ()\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	\
+	\
 	\cf5 -- Call with either text or alias\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 if
 \b0 \cf2  
 \i \cf4 class
@@ -248,6 +255,26 @@
 \b \cf2 then
 \b0 \cf2 \
 		
+\b \cf2 if
+\b0 \cf2  \cf6 config\cf2  
+\b \cf2 starts with
+\b0 \cf2  \cf2 "/"\cf2  
+\b \cf2 then
+\b0 \cf2 \
+			\cf5 -- Auto-detection. Pashua config never starts with a slash\cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 pashua_cmd\cf2  
+\b \cf2 to
+\b0 \cf2  \cf3 quoted form\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 pashua_binary\cf2  & \cf3 space\cf2  & \cf3 quoted form\cf2  
+\b \cf2 of
+\b0 \cf2  \cf6 config\cf2 \
+		
+\b \cf2 else
+\b0 \cf2 \
+			
 \b \cf2 set
 \b0 \cf2  \cf6 pashua_cmd\cf2  
 \b \cf2 to
@@ -256,8 +283,12 @@
 \b0 \cf2  \cf6 config\cf2  & \cf2 " | "\cf2  & \cf3 quoted form\cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 pashua_binary\cf2  & \cf2 " -"\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+		
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
+	
 \b \cf2 else
 \b0 \cf2  
 \b \cf2 if
@@ -272,8 +303,7 @@
 \i0 \cf2  
 \b \cf2 then
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 pashua_cmd\cf2  
 \b \cf2 to
@@ -284,48 +314,40 @@
 \b0 \cf2  \cf3 POSIX path\cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 error
 \b0 \cf2  \cf2 "Call this method with either 'text' of 'alias', not with '"\cf2  & (
 \i \cf4 class
 \i0 \cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config\cf2 ) & \cf2 "'"\cf2  \cf4 number\cf2  \cf2 1000\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
 	\
 	\cf5 -- Call pashua\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 set
 \b0 \cf2  \cf6 pashua_res\cf2  
 \b \cf2 to
 \b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf6 api_name\cf2 , \cf6 pashua_cmd\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	\
+	
 \b \cf2 set
 \b0 \cf2  \cf6 result_lines\cf2  
 \b \cf2 to
 \b0 \cf2  \cf7 split_string\cf2 (\cf6 pashua_res\cf2 , \cf3 return\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	\
+	\
 	\cf5 -- There was an error in the config (for example the following line: "x=y")\cf2 \
 	\cf5 --or there were no inputs and no buttons defined, and the (implicit defined) default button was pressed\cf2 \
 	\cf5 --or the red [x] close button was pressed with no cancel button was defined\cf2 \
 	\cf5 --or gave up (autoclosetime) without cancel button defined\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 if
 \b0 \cf2  (
 \b \cf4 count
@@ -338,12 +360,10 @@
 \b0 \cf2  
 \b \cf2 error
 \b0 \cf2  \cf2 "It looks like Pashua.app had some problems using the window configuration (no text lines were returned)."\cf2  \cf4 number\cf2  \cf2 1001\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	\
+	\
 	\cf5 -- User pressed cancel\cf2 \
 	\cf5 -- or only one input/button is defined\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 if
 \b0 \cf2  (
 \b \cf4 count
@@ -355,20 +375,16 @@
 \b \cf2 then
 \b0 \cf2  
 \b \cf2 error
-\b0 \cf2  \cf4 number\cf2  \cf2 -128\cf2  \cf5 --user canceled \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+\b0 \cf2  \cf4 number\cf2  \cf2 -128\cf2  \cf5 --user canceled\cf2 \
+	\
+	
 \b \cf2 return
 \b0 \cf2  \cf6 result_lines\cf2 \
 
 \b \cf2 end
 \b0 \cf2  \cf7 _call_pashua\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --| Parses Pashua's output to a NSDictionary (which can be converted to an AppleScript record)\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 _ini_to_dictionary\cf2 (\cf6 ini_lines\cf2  
@@ -408,14 +424,12 @@
 \b \cf2 to
 \b0 \cf2  \cf7 _parse_pashua_result_line\cf2 (\cf6 text_line\cf2 )\
 		(\cf6 result_dictionary's\cf2  \cf7 setValue\cf2 :\cf6 value_string\cf2  \cf7 forKey\cf2 :\cf6 key_string\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 repeat
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \cf6 result_dictionary\cf2 \
 
@@ -461,12 +475,10 @@
 \b0 \cf2  \cf6 value_string\cf2  
 \b \cf2 to
 \b0 \cf2  \cf2 ""\cf2  \cf5 --use empty string, because missing value won't show up in record\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 value_string\cf2  
 \b \cf2 to
@@ -479,28 +491,24 @@
 \b0 \cf2  \cf6 result_line\cf2 ) 
 \b \cf2 of
 \b0 \cf2  \cf6 result_line\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \{\cf6 key_string\cf2 , \cf6 value_string\cf2 \}\
 
 \b \cf2 end
 \b0 \cf2  \cf7 _parse_pashua_result_line\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 -- converts a record to a Pashua-config text. Rules for any given key:value-pair\cf2 \
 \cf5 -- * key == "*": shortcut for "*.title" => "*.title=\{value\}"\cf2 \
-\cf5 -- a key without a ".": \cf2 \
+\cf5 -- a key without a ".":\cf2 \
 \cf5 -- + when value is a a string: the default-attribute it is assumed => "\{key\}.default=\{value\}"\cf2 \
 \cf5 -- + when value is a a list: the option-attribute it is assumed => "\{key\}.option=\{value\}"\cf2 \
 \cf5 -- a key with a ".": => "\{key\}=\{value\}" (when key is a list, every item becomes a line)\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 value_record_to_config\cf2 (\cf6 value_record\cf2 )\
@@ -548,13 +556,12 @@
 \b0 \cf2  \cf6 dict_value\cf2  
 \b \cf2 to
 \b0 \cf2  (\cf6 value_dict's\cf2  \cf7 valueForKey\cf2 :\cf6 the_key_text\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		\cf5 --TODO: do proper type checking instead of try and fail\cf2 \
+		\cf5 --TODO: do proper type checking instead of try and fail\cf2 \
+		\cf5 --TODO: convert alias to (POSIX path of)\cf2 \
 		
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 value_text\cf2  
 \b \cf2 to
@@ -576,14 +583,12 @@
 \b0 \cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config_lines\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
 \b0 \cf2  \cf4 number\cf2  -\cf2 1700\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 value_list\cf2  
 \b \cf2 to
@@ -614,8 +619,7 @@
 \b0 \cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config_lines\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 repeat
@@ -630,8 +634,7 @@
 \b0 \cf2  
 \b \cf2 repeat
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \cf7 join_list\cf2 (\cf6 config_lines\cf2 , \cf3 linefeed\cf2 )\
 
@@ -657,8 +660,7 @@
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
 \b0 \cf2  \cf2 "*.title="\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 else
 \b0 \cf2  
 \b \cf2 if
@@ -667,18 +669,15 @@
 \b0 \cf2  \cf2 "."\cf2  
 \b \cf2 then
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 key_text\cf2  & \cf2 "="\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 if
 \b0 \cf2  \cf6 is_from_list\cf2  
 \b \cf2 then
@@ -688,18 +687,15 @@
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 key_text\cf2  & \cf2 ".option="\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 key_text\cf2  & \cf2 ".default="\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
@@ -710,8 +706,7 @@
 \b \cf2 if
 \b0 \cf2 \
 	\cf5 --TODO: smart processing of linefeed/return to "\\n" and/or "[return]"?\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 set
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
@@ -725,9 +720,7 @@
 \
 \
 \cf5 --\'bb 3. Generic utility handlers (list/string/alias/log\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\
 
 \b \cf2 to
 \b0 \cf2  \cf7 join_list\cf2 (\cf6 aList\cf2  
@@ -841,14 +834,12 @@
 		
 \b \cf2 return
 \b0 \cf2  \cf6 sourceText\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 set
 \b0 \cf2  
 \b \cf2 the
@@ -877,10 +868,8 @@
 \b \cf2 end
 \b0 \cf2  \cf7 replace_text\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --| Make sure the argument (file, alias, text) is always returned as an alias.\cf2 \
 \cf5 --| Text can be POSIX format (/Path/to/file.txt) or HFS+ format (Computer:Path:to:file.txt)\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 to_alias\cf2 (\cf6 file_path\cf2 )\
@@ -915,12 +904,10 @@
 \b0 \cf2  
 \i \cf4 alias
 \i0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 else
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 file_path\cf2  
 \b \cf2 to
@@ -929,8 +916,7 @@
 \b0 \cf2  
 \i \cf4 alias
 \i0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
@@ -950,8 +936,7 @@
 \i0 \cf2  
 \b \cf2 then
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 file_path\cf2  
 \b \cf2 to
@@ -960,34 +945,28 @@
 \b0 \cf2  
 \i \cf4 alias
 \i0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
 	\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \cf6 file_path\cf2 \
 
 \b \cf2 end
 \b0 \cf2  \cf7 to_alias\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --| Executes a shell command, and logs before and after\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 do_shell_with_log\cf2 (\cf6 title\cf2 , \cf6 command\cf2 )\
 	\cf7 do_log\cf2 (\cf6 title\cf2  & \cf2 " COMMAND ["\cf2  & \cf6 command\cf2  & \cf2 "]"\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 set
 \b0 \cf2  \cf6 shell_result\cf2  
 \b \cf2 to
@@ -995,34 +974,28 @@
 \b \cf8 do shell script
 \b0 \cf2  \cf6 command\cf2 \
 		\cf7 do_log\cf2 (\cf6 title\cf2  & \cf2 " RESULT ["\cf2  & \cf6 shell_result\cf2  & \cf2 "]"\cf2 )\
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
 \b0 \cf2  \cf6 err_msg\cf2  \cf4 number\cf2  \cf6 err_nr\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		\cf7 do_log\cf2 (\cf6 title\cf2  & \cf2 " RESULT, EXIT CODE "\cf2  & \cf6 err_nr\cf2  & \cf2 ", error message ["\cf2  & \cf6 err_msg\cf2  & \cf2 "]"\cf2 )\
+		\cf7 do_log\cf2 (\cf6 title\cf2  & \cf2 " RESULT, EXIT CODE "\cf2  & \cf6 err_nr\cf2  & \cf2 ", error message ["\cf2  & \cf6 err_msg\cf2  & \cf2 "]"\cf2 )\
 		
 \b \cf2 error
 \b0 \cf2  \cf6 err_msg\cf2  \cf4 number\cf2  \cf6 err_nr\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \cf6 shell_result\cf2 \
 
 \b \cf2 end
 \b0 \cf2  \cf7 do_shell_with_log\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --| Log a line of text to ~/Library/Logs/Catsdeep/ASPashua.log\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 on
 \b0 \cf2  \cf7 do_log\cf2 (\cf6 log_message\cf2 )\
@@ -1051,22 +1024,18 @@
 		
 \b \cf8 do shell script
 \b0 \cf2  \cf6 cmd\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 end
 \b0 \cf2  \cf7 do_log\cf2 \
 \
 \
 \cf5 --\'bb 4. "Property getters" (stored in global variables, with initialization code)\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\
 
 \b \cf2 global
 \b0 \cf2  \cf6 pashua_binary\cf2 \
@@ -1086,8 +1055,7 @@
 		
 \b \cf2 return
 \b0 \cf2  \cf6 pashua_binary\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
@@ -1097,8 +1065,7 @@
 \b \cf2 try
 \b0 \cf2 \
 			\cf5 --TODO: fix this, depends on "show extension" setting of Finder\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 app_location\cf2  
 \b \cf2 to
@@ -1114,14 +1081,12 @@
 \b0 \cf2  (\cf3 POSIX path\cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 app_location\cf2 ) & \cf2 "Contents/MacOS/Pashua"\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
 \b0 \cf2  \cf4 number\cf2  -\cf2 192\cf2  \cf5 --A resource wasn\'92t found.\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 repeat
 \b0 \cf2  
 \b \cf2 with
@@ -1177,8 +1142,7 @@
 						
 \b \cf2 return
 \b0 \cf2  \cf6 pashua_binary\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 					
+					
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 if
@@ -1198,17 +1162,14 @@
 \b0 \cf2  
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 error
 \b0 \cf2  \cf2 "Can't locate the path of Pashua.app. Download it from http://www.bluem.net/files/Pashua.dmg and save it in the 'Applications' folder."\cf2  \cf4 number\cf2  \cf2 1002\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 end
 \b0 \cf2  \cf7 _get_pashua_posix_path\cf2 \
@@ -1225,8 +1186,7 @@
 		
 \b \cf2 return
 \b0 \cf2  \cf6 log_to_file\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
@@ -1234,8 +1194,7 @@
 		
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 log_to_file\cf2  
 \b \cf2 to
@@ -1244,22 +1203,19 @@
 \b0 \cf2  \cf2 "defaults read com.catsdeep.ASPashua do_log"\cf2 ) 
 \b \cf2 is
 \b0 \cf2  \cf2 "1"\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 on
 \b0 \cf2  
 \b \cf2 error
 \b0 \cf2  \cf4 number\cf2  \cf2 1\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 			
+			
 \b \cf2 set
 \b0 \cf2  \cf6 log_to_file\cf2  
 \b \cf2 to
 \b0 \cf2  
 \i \cf3 false
 \i0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 		
+		
 \b \cf2 end
 \b0 \cf2  
 \b \cf2 try
@@ -1269,8 +1225,7 @@
 \b0 \cf2  
 \b \cf2 try
 \b0 \cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 	
+	
 \b \cf2 return
 \b0 \cf2  \cf6 log_to_file\cf2 \
 

@@ -22,9 +22,14 @@ on «event PASHDIDI» config given «class Dyva»:value_record : missing value
 
 	if value_record is not missing value then
 		if class of config is alias then
-			set config_text to do_shell_with_log("read config", "cat " & quoted form of POSIX path of config)
+			set config_text to do_shell_with_log("read config alias", "cat " & quoted form of POSIX path of config)
 		else if class of config is text then
-			set config_text to config
+			if config starts with "/" then
+				-- Auto-detection. Pashua config never starts with a slash
+				set config_text to do_shell_with_log("read config posix", "cat " & quoted form of config)
+			else
+				set config_text to config
+			end if
 		else
 			error "Call this method with either 'text' of 'alias', not with '" & (class of config) & "'" number 1000
 		end if
@@ -51,7 +56,12 @@ on _call_pashua(api_name, config)
 
 	-- Call with either text or alias
 	if class of config is text then
-		set pashua_cmd to "echo " & quoted form of config & " | " & quoted form of pashua_binary & " -"
+		if config starts with "/" then
+			-- Auto-detection. Pashua config never starts with a slash
+			set pashua_cmd to quoted form of pashua_binary & space & quoted form of config
+		else
+			set pashua_cmd to "echo " & quoted form of config & " | " & quoted form of pashua_binary & " -"
+		end if
 	else if class of config is alias then
 		set pashua_cmd to quoted form of pashua_binary & space & quoted form of POSIX path of config
 	else
@@ -117,6 +127,7 @@ on value_record_to_config(value_record)
 		set the_key_text to contents of key_text as text
 		set dict_value to (value_dict's valueForKey:the_key_text)
 		--TODO: do proper type checking instead of try and fail
+		--TODO: convert alias to (POSIX path of)
 		try
 			set value_text to dict_value as text
 			copy key_value_to_config_line(the_key_text, value_text, false) to the end of config_lines
