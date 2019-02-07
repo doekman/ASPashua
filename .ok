@@ -1,0 +1,9 @@
+make help #prints targets
+
+# Settings
+defaults read com.catsdeep.ASPashua
+defaults write com.catsdeep.ASPashua do_log -bool TRUE
+defaults write com.catsdeep.ASPashua embed -bool TRUE
+defaults delete com.catsdeep.ASPashua
+
+open ~/Library/Logs/Catsdeep/ASPashua.log
