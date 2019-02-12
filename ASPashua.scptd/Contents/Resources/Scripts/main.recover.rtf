@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
 {\fonttbl\f0\fnil\fcharset0 Verdana;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red108\green5\blue211;\red0\green0\blue255;
 \red76\green78\blue78;\red64\green128\blue0;\red251\green0\blue7;\red0\green22\blue176;\red68\green21\blue176;
@@ -23,8 +23,10 @@
 \i \cf4 framework
 \i0 \cf2  \cf2 "Foundation"\cf2 \
 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 1. Public handlers\cf2 \
-\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf2 \
 
 \b \cf2 on
 \b0 \cf2  
@@ -221,8 +223,10 @@
 \b0 \cf2 \
 \
 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 2. Private handlers\cf2 \
-\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf2 \
 \cf5 --| Call to show a Pashua dialog\cf2 \
 \cf5 --| api_name: just a string, used for logging (so the user can see where the call came from)\cf2 \
 \cf5 --| config: text or alias\cf2 \
@@ -505,16 +509,15 @@
 \
 \cf5 -- converts a record to a Pashua-config text. Rules for any given key:value-pair\cf2 \
 \cf5 -- * key == "*": shortcut for "*.title" => "*.title=\{value\}"\cf2 \
-\cf5 -- a key without a ".":\cf2 \
-\cf5 -- + when value is a a string: the default-attribute it is assumed => "\{key\}.default=\{value\}"\cf2 \
-\cf5 -- + when value is a a list: the option-attribute it is assumed => "\{key\}.option=\{value\}"\cf2 \
+\cf5 -- a key without a ".", the default-attribute it is assumed => "\{key\}.default=\{value\}"\cf2 \
 \cf5 -- a key with a ".": => "\{key\}=\{value\}" (when key is a list, every item becomes a line)\cf2 \
+\cf5 -- When the value is a list, for every item a line will be made (example: \{|my_pop.option|:\{"one","two"\}\})\cf2 \
 
 \b \cf2 on
 \b0 \cf2  \cf7 value_record_to_config\cf2 (\cf6 value_record\cf2 )\
 	
 \b \cf2 local
-\b0 \cf2  \cf6 config_lines\cf2 , \cf6 value_dict\cf2 , \cf6 all_keys\cf2 , \cf6 the_key_text\cf2 , \cf6 dict_value\cf2 , \cf6 value_text\cf2 \
+\b0 \cf2  \cf6 config_lines\cf2 , \cf6 value_dict\cf2 , \cf6 all_keys\cf2 , \cf6 the_key_text\cf2 , \cf6 dict_value\cf2 , \cf6 value_text\cf2 , \cf6 value_list\cf2 \
 	\
 	
 \b \cf2 set
@@ -556,39 +559,7 @@
 \b0 \cf2  \cf6 dict_value\cf2  
 \b \cf2 to
 \b0 \cf2  (\cf6 value_dict's\cf2  \cf7 valueForKey\cf2 :\cf6 the_key_text\cf2 )\
-		\cf5 --TODO: do proper type checking instead of try and fail\cf2 \
-		\cf5 --TODO: convert alias to (POSIX path of)\cf2 \
 		
-\b \cf2 try
-\b0 \cf2 \
-			
-\b \cf2 set
-\b0 \cf2  \cf6 value_text\cf2  
-\b \cf2 to
-\b0 \cf2  \cf6 dict_value\cf2  
-\b \cf2 as
-\b0 \cf2  
-\i \cf4 text
-\i0 \cf2 \
-			
-\b \cf2 copy
-\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf6 value_text\cf2 , 
-\i \cf3 false
-\i0 \cf2 ) 
-\b \cf2 to
-\b0 \cf2  
-\b \cf2 the
-\b0 \cf2  
-\b \cf2 end
-\b0 \cf2  
-\b \cf2 of
-\b0 \cf2  \cf6 config_lines\cf2 \
-		
-\b \cf2 on
-\b0 \cf2  
-\b \cf2 error
-\b0 \cf2  \cf4 number\cf2  -\cf2 1700\cf2 \
-			
 \b \cf2 set
 \b0 \cf2  \cf6 value_list\cf2  
 \b \cf2 to
@@ -596,21 +567,29 @@
 \b \cf2 as
 \b0 \cf2  
 \i \cf4 list
-\i0 \cf2 \
-			
+\i0 \cf2  \cf5 --string is converted to an 1-item list, NSArray is converted to a list\cf2 \
+		
 \b \cf2 repeat
 \b0 \cf2  
 \b \cf2 with
-\b0 \cf2  \cf6 value_text\cf2  
+\b0 \cf2  \cf6 value_item\cf2  
 \b \cf2 in
 \b0 \cf2  \cf6 value_list\cf2 \
-				
-\b \cf2 copy
-\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf3 contents\cf2  
+			\cf5 --TODO: convert alias to (POSIX path of), etc.\cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 value_text\cf2  
+\b \cf2 to
+\b0 \cf2  (\cf3 contents\cf2  
 \b \cf2 of
-\b0 \cf2  \cf6 value_text\cf2 , 
-\i \cf3 true
-\i0 \cf2 ) 
+\b0 \cf2  \cf6 value_item\cf2 ) 
+\b \cf2 as
+\b0 \cf2  
+\i \cf4 text
+\i0 \cf2 \
+			
+\b \cf2 copy
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf6 value_text\cf2 ) 
 \b \cf2 to
 \b0 \cf2  
 \b \cf2 the
@@ -619,15 +598,10 @@
 \b0 \cf2  
 \b \cf2 of
 \b0 \cf2  \cf6 config_lines\cf2 \
-			
-\b \cf2 end
-\b0 \cf2  
-\b \cf2 repeat
-\b0 \cf2 \
 		
 \b \cf2 end
 \b0 \cf2  
-\b \cf2 try
+\b \cf2 repeat
 \b0 \cf2 \
 	
 \b \cf2 end
@@ -643,7 +617,7 @@
 \
 
 \b \cf2 on
-\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 key_text\cf2 , \cf6 value_text\cf2 , \cf6 is_from_list\cf2 )\
+\b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 key_text\cf2 , \cf6 value_text\cf2 )\
 	
 \b \cf2 local
 \b0 \cf2  \cf6 config_line\cf2 \
@@ -678,28 +652,10 @@
 \b \cf2 else
 \b0 \cf2 \
 		
-\b \cf2 if
-\b0 \cf2  \cf6 is_from_list\cf2  
-\b \cf2 then
-\b0 \cf2 \
-			
-\b \cf2 set
-\b0 \cf2  \cf6 config_line\cf2  
-\b \cf2 to
-\b0 \cf2  \cf6 key_text\cf2  & \cf2 ".option="\cf2 \
-		
-\b \cf2 else
-\b0 \cf2 \
-			
 \b \cf2 set
 \b0 \cf2  \cf6 config_line\cf2  
 \b \cf2 to
 \b0 \cf2  \cf6 key_text\cf2  & \cf2 ".default="\cf2 \
-		
-\b \cf2 end
-\b0 \cf2  
-\b \cf2 if
-\b0 \cf2 \
 	
 \b \cf2 end
 \b0 \cf2  
@@ -719,8 +675,10 @@
 \b0 \cf2  \cf7 key_value_to_config_line\cf2 \
 \
 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 3. Generic utility handlers (list/string/alias/log\cf2 \
-\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf2 \
 
 \b \cf2 to
 \b0 \cf2  \cf7 join_list\cf2 (\cf6 aList\cf2  
@@ -1034,8 +992,10 @@
 \b0 \cf2  \cf7 do_log\cf2 \
 \
 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 4. "Property getters" (stored in global variables, with initialization code)\cf2 \
-\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf2 \
 
 \b \cf2 global
 \b0 \cf2  \cf6 pashua_binary\cf2 \

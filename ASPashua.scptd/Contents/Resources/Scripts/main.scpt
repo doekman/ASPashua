@@ -113,12 +113,11 @@ end _parse_pashua_result_line
 
 -- converts a record to a Pashua-config text. Rules for any given key:value-pair
 -- * key == "*": shortcut for "*.title" => "*.title={value}"
--- a key without a ".":
--- + when value is a a string: the default-attribute it is assumed => "{key}.default={value}"
--- + when value is a a list: the option-attribute it is assumed => "{key}.option={value}"
+-- a key without a ".", the default-attribute it is assumed => "{key}.default={value}"
 -- a key with a ".": => "{key}={value}" (when key is a list, every item becomes a line)
+-- When the value is a list, for every item a line will be made (example: {|my_pop.option|:{"one","two"}})
 on value_record_to_config(value_record)
-	local config_lines, value_dict, all_keys, the_key_text, dict_value, value_text
+	local config_lines, value_dict, all_keys, the_key_text, dict_value, value_text, value_list
 
 	set config_lines to {}
 	set value_dict to current application's NSDictionary's dictionaryWithDictionary:value_record
@@ -126,22 +125,17 @@ on value_record_to_config(value_record)
 	repeat with key_text in all_keys
 		set the_key_text to contents of key_text as text
 		set dict_value to (value_dict's valueForKey:the_key_text)
-		--TODO: do proper type checking instead of try and fail
-		--TODO: convert alias to (POSIX path of)
-		try
-			set value_text to dict_value as text
-			copy key_value_to_config_line(the_key_text, value_text, false) to the end of config_lines
-		on error number -1700
-			set value_list to dict_value as list
-			repeat with value_text in value_list
-				copy key_value_to_config_line(the_key_text, contents of value_text, true) to the end of config_lines
-			end repeat
-		end try
+		set value_list to dict_value as list --string is converted to an 1-item list, NSArray is converted to a list
+		repeat with value_item in value_list
+			--TODO: convert alias to (POSIX path of), etc.
+			set value_text to (contents of value_item) as text
+			copy key_value_to_config_line(the_key_text, value_text) to the end of config_lines
+		end repeat
 	end repeat
 	return join_list(config_lines, linefeed)
 end value_record_to_config
 
-on key_value_to_config_line(key_text, value_text, is_from_list)
+on key_value_to_config_line(key_text, value_text)
 	local config_line
 
 	if key_text is "*" then
@@ -149,11 +143,7 @@ on key_value_to_config_line(key_text, value_text, is_from_list)
 	else if key_text contains "." then
 		set config_line to key_text & "="
 	else
-		if is_from_list then
-			set config_line to key_text & ".option="
-		else
-			set config_line to key_text & ".default="
-		end if
+		set config_line to key_text & ".default="
 	end if
 	--TODO: smart processing of linefeed/return to "\n" and/or "[return]"?
 	set config_line to config_line & value_text
