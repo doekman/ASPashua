@@ -11,7 +11,6 @@
 
 \f0\b\fs24 \cf2 use
 \b0 \cf2  \cf3 AppleScript\cf2  \cf4 version\cf2  \cf2 "2.4"\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 
 \b \cf2 use
 \b0 \cf2  
@@ -23,10 +22,8 @@
 \i \cf4 framework
 \i0 \cf2  \cf2 "Foundation"\cf2 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 1. Public handlers\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
+\
 
 \b \cf2 on
 \b0 \cf2  
@@ -223,10 +220,8 @@
 \b0 \cf2 \
 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 2. Private handlers\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
+\
 \cf5 --| Call to show a Pashua dialog\cf2 \
 \cf5 --| api_name: just a string, used for logging (so the user can see where the call came from)\cf2 \
 \cf5 --| config: text or alias\cf2 \
@@ -560,6 +555,13 @@
 \b \cf2 to
 \b0 \cf2  (\cf6 value_dict's\cf2  \cf7 valueForKey\cf2 :\cf6 the_key_text\cf2 )\
 		
+\b \cf2 if
+\b0 \cf2  (\cf6 dict_value's\cf2  \cf7 isKindOfClass\cf2 :(
+\i \cf3 current application's
+\i0 \cf2  \cf6 NSArray\cf2 )) 
+\b \cf2 then
+\b0 \cf2 \
+			
 \b \cf2 set
 \b0 \cf2  \cf6 value_list\cf2  
 \b \cf2 to
@@ -567,7 +569,26 @@
 \b \cf2 as
 \b0 \cf2  
 \i \cf4 list
-\i0 \cf2  \cf5 --string is converted to an 1-item list, NSArray is converted to a list\cf2 \
+\i0 \cf2 \
+		
+\b \cf2 else
+\b0 \cf2 \
+			\cf5 --TODO: smart convert (IE: date to ISO-string, alias to posix path) \cf2 \
+			\cf5 --and remember converts, so same type can be used when converting Pashua's output\cf2 \
+			
+\b \cf2 set
+\b0 \cf2  \cf6 value_list\cf2  
+\b \cf2 to
+\b0 \cf2  \{\cf6 dict_value\cf2  
+\b \cf2 as
+\b0 \cf2  
+\i \cf4 text
+\i0 \cf2 \}\
+		
+\b \cf2 end
+\b0 \cf2  
+\b \cf2 if
+\b0 \cf2 \
 		
 \b \cf2 repeat
 \b0 \cf2  
@@ -575,7 +596,6 @@
 \b0 \cf2  \cf6 value_item\cf2  
 \b \cf2 in
 \b0 \cf2  \cf6 value_list\cf2 \
-			\cf5 --TODO: convert alias to (POSIX path of), etc.\cf2 \
 			
 \b \cf2 set
 \b0 \cf2  \cf6 value_text\cf2  
@@ -586,7 +606,7 @@
 \b \cf2 as
 \b0 \cf2  
 \i \cf4 text
-\i0 \cf2 \
+\i0 \cf2  \cf5 --also "as text", because "dict_values as list" above doesn't convert to text\cf2 \
 			
 \b \cf2 copy
 \b0 \cf2  \cf7 key_value_to_config_line\cf2 (\cf6 the_key_text\cf2 , \cf6 value_text\cf2 ) 
@@ -675,10 +695,8 @@
 \b0 \cf2  \cf7 key_value_to_config_line\cf2 \
 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 3. Generic utility handlers (list/string/alias/log\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
+\
 
 \b \cf2 to
 \b0 \cf2  \cf7 join_list\cf2 (\cf6 aList\cf2  
@@ -992,10 +1010,8 @@
 \b0 \cf2  \cf7 do_log\cf2 \
 \
 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
 \cf5 --\'bb 4. "Property getters" (stored in global variables, with initialization code)\cf2 \
-\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
-\cf2 \
+\
 
 \b \cf2 global
 \b0 \cf2  \cf6 pashua_binary\cf2 \

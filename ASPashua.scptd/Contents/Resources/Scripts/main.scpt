@@ -125,10 +125,15 @@ on value_record_to_config(value_record)
 	repeat with key_text in all_keys
 		set the_key_text to contents of key_text as text
 		set dict_value to (value_dict's valueForKey:the_key_text)
-		set value_list to dict_value as list --string is converted to an 1-item list, NSArray is converted to a list
+		if (dict_value's isKindOfClass:(current application's NSArray)) then
+			set value_list to dict_value as list
+		else
+			--TODO: smart convert (IE: date to ISO-string, alias to posix path)
+			--and remember converts, so same type can be used when converting Pashua's output
+			set value_list to {dict_value as text}
+		end if
 		repeat with value_item in value_list
-			--TODO: convert alias to (POSIX path of), etc.
-			set value_text to (contents of value_item) as text
+			set value_text to (contents of value_item) as text --also "as text", because "dict_values as list" above doesn't convert to text
 			copy key_value_to_config_line(the_key_text, value_text) to the end of config_lines
 		end repeat
 	end repeat
