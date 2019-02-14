@@ -124,7 +124,7 @@ on value_record_to_config(value_record)
 	set all_keys to value_dict's allKeys()
 	repeat with key_text in all_keys
 		set the_key_text to contents of key_text as text
-		set dict_value to (value_dict's valueForKey:the_key_text)
+		set dict_value to (value_dict's objectForKey:the_key_text)
 		if (dict_value's isKindOfClass:(current application's NSArray)) then
 			set value_list to dict_value as list
 		else

@@ -44,7 +44,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 		<real>0.80000001192092896</real>
 		<key>viewControllers</key>
 		<dict>
-			<key>B96A45FA-9083-4F2F-90A4-19E13B1D67EA-69420-0000191129EC07ED</key>
+			<key>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</key>
 			<dict>
 				<key>debuggerViewState</key>
 				<dict>
@@ -71,9 +71,9 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>349</integer>
-								<integer>449</integer>
-								<integer>176</integer>
+								<integer>317</integer>
+								<integer>408</integer>
+								<integer>160</integer>
 							</array>
 							<key>5</key>
 							<array>
@@ -219,8 +219,8 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>327</integer>
-								<integer>628</integer>
+								<integer>344</integer>
+								<integer>662</integer>
 							</array>
 						</dict>
 					</dict>
@@ -242,7 +242,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>5774</integer>
+								<integer>857</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -254,7 +254,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 1954}, {1434, 922}}</string>
+						<string>{{0, 0}, {1559, 973}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -281,9 +281,9 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>tabsHidden</key>
 				<false/>
 				<key>windowControllerID</key>
-				<string>B96A45FA-9083-4F2F-90A4-19E13B1D67EA-69420-0000191129EC07ED</string>
+				<string>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</string>
 				<key>windowFrame</key>
-				<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+				<string>0 53 2045 1076 0 0 2048 1129 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -292,13 +292,13 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>controllerClass</key>
 				<string>ScriptWindowController</string>
 				<key>controllerID</key>
-				<string>B96A45FA-9083-4F2F-90A4-19E13B1D67EA-69420-0000191129EC07ED</string>
+				<string>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</string>
 				<key>controllerState</key>
 				<dict>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>2048 125 1920 1004 2048 72 1920 1057 </string>
+					<string>0 53 2045 1076 0 0 2048 1129 </string>
 				</dict>
 			</dict>
 		</array>
