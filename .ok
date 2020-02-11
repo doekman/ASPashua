@@ -1,9 +1,10 @@
 make help #prints targets
-
+# Build for a release
+export EMBED_PASHUA=1; make clean zip; unset EMBED_PASHUA; make zip
 # Settings
-defaults read com.catsdeep.ASPashua
-defaults write com.catsdeep.ASPashua do_log -bool TRUE
-defaults write com.catsdeep.ASPashua embed -bool TRUE
-defaults delete com.catsdeep.ASPashua
-
-open ~/Library/Logs/Catsdeep/ASPashua.log
+export EMBED_PASHUA=0
+export EMBED_PASHUA=1
+unset EMBED_PASHUA
+# Log file
+open ~/Library/Logs/Catsdeep/ASPashua.log # Open in console
+less +G ~/Library/Logs/Catsdeep/ASPashua.log  # Show last part with less
