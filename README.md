@@ -3,45 +3,32 @@ ASPashua
 
 This AppleScript Library tries to make it convenient to use [Pashua][] with AppleScript for enhanced dialogs.
 
+Getting started
+---------------
 
-Prerequisites
--------------
+Download the [latest release][latest-release], and install it in one of the _Script Libraries_ folders (more more instructions in the download). 
 
-**NOTICE**: you need to have [osagitfilter][] installed, before cloning this repository locally.
+In the download you will also find examples of how to use the script library.
 
-You need to have [Pashua][] installed on your system, since this library is a wrapper for that application.
+When you are done playing with those, you can see the [Pashua documentation][pashua-config] on what you can do with these forms.
 
-
-Using
------
-
-To use this AppleScript Library, run `make install` from the command line. After this, you can open and run the included examples.
-
-To create your own code, first you need to create a [form configuration][pashua-config], either as text-string or in a seperate file. Then you can display the form with `display pashua dialog` which returns a `record` with the entered values.
+There are two distributions: in the biggest archive, the Pashua application is embedded within the script library, so you don't need to distribute it.
 
 
-Settings
---------
+Developing
+----------
 
-To enable the logging, run the following on the command line:
+Pre-requisites for working with this repository:
 
-	defaults write com.catsdeep.ASPashua do_log -bool TRUE
+* you need to have [osagitfilter][] installed, before cloning this repository.
+* you need to have [Pashua][] installed on your system, since this library is a wrapper for that application.
+* it's handy to have [ok-bash][] installed, so you can easy use the included `.ok`-file.
 
-To instruct `make install` to embed `Pashua.app` into the built target, execute:
+Type `make` to see the help-screen. And type `ok` (or `cat .ok`) for some additional commands.
 
-	defaults write com.catsdeep.ASPashua embed -bool TRUE
-
-This will log the input and output of the _Pashua.app_-call to the log file `~/Library/Logs/Catsdeep/ASPashua.log`. The file can be easily inspected with macOS' _Console.app_.
-
-Inspect settings:
-
-	defaults read com.catsdeep.ASPashua
-
-Revert settings to default:
-
-	defaults delete com.catsdeep.ASPashua
-	
 
 [osagitfilter]: https://github.com/doekman/osagitfilter
 [Pashua]: https://www.bluem.net/en/projects/pashua/
 [pashua-config]: https://www.bluem.net/pashua-docs-latest.html
+[ok-bash]: https://github.com/secretGeek/ok-bash
+[latest-release]: https://github.com/doekman/ASPashua/releases/latest

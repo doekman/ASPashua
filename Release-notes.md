@@ -17,7 +17,7 @@ To do this:
 	- if it doesn't exist, you can created it with command+shift+N (or from the menu: Archive > New folder...)
 * As a final step, move `ASPashua.scptd` to this folder
 
-Now you can run the supplied samples.
+Now you can run the supplied examples.
 
 
 Version 0.3
