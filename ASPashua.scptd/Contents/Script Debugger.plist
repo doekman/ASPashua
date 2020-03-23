@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>SD4Version</key>
-	<string>7.0.7</string>
+	<string>7.0.10</string>
 	<key>SD5ConversionOffered</key>
 	<false/>
 	<key>SDAddUsedLibrariesOnExport</key>
@@ -71,9 +71,9 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>317</integer>
-								<integer>408</integer>
-								<integer>160</integer>
+								<integer>355</integer>
+								<integer>458</integer>
+								<integer>179</integer>
 							</array>
 							<key>5</key>
 							<array>
@@ -219,8 +219,8 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>344</integer>
-								<integer>662</integer>
+								<integer>442</integer>
+								<integer>851</integer>
 							</array>
 						</dict>
 					</dict>
@@ -242,7 +242,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>857</integer>
+								<integer>6075</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -254,7 +254,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 0}, {1559, 973}}</string>
+						<string>{{0, 1756}, {1221, 1261}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -283,7 +283,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>windowControllerID</key>
 				<string>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</string>
 				<key>windowFrame</key>
-				<string>0 53 2045 1076 0 0 2048 1129 </string>
+				<string>0 53 1707 1364 0 0 2560 1417 </string>
 			</dict>
 		</dict>
 		<key>windowControllers</key>
@@ -298,7 +298,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 					<key>miniaturized</key>
 					<false/>
 					<key>windowFrame</key>
-					<string>0 53 2045 1076 0 0 2048 1129 </string>
+					<string>0 53 1707 1364 0 0 2560 1417 </string>
 				</dict>
 			</dict>
 		</array>

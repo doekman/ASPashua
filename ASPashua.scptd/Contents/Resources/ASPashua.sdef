@@ -7,7 +7,7 @@
 				<type type="text"/>
 				<type type="file"/>
 			</direct-parameter>
-			<parameter name="dynamic values" code="Dyva" description="Dynamic values which are added to the supplied config." type="record" optional="yes"/>
+			<parameter name="dynamic values" code="Dyva" description="Dynamic values which are added to the supplied config. Text: `{control: &quot;value&quot;}` adds `control.default=value`. List: `{control: {&quot;a&quot;,&quot;b&quot;}}` adds `control.option=a` and `control.option=b`.  Title: `{|*|: &quot;The window&quot;}` adds `*.title=The window`.  If the key contains a &quot;.&quot;, it is copied verbatim: `{|*.appearance|: &quot;metal&quot;}` adds `*.appearance=metal`." type="record" optional="yes"/>
 			<result description="The dialog result, parsed as an AppleScript record. When the user cancels the dialog, an error is raised (number -128, User canceled). An error will also be raised when Pashua.app can&apos;t parse the config (number 1001)." type="record"/>
 		</command>
 		<command name="custom pashua location" code="PASHCMPL" description="Used to set a custom location of the Pashua.app">

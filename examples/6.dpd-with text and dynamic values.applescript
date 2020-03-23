@@ -46,7 +46,7 @@ try
 	set error_message to validate_data(entered_data)
 	
 	repeat until error_message = ""
-		set dyn_val to entered_data & {message:"Error encountered:[return]* " & error_message}
+		set dyn_val to entered_data & {message:"Error encountered:" & return & "* " & error_message}
 		set entered_data to display pashua dialog config_text dynamic values dyn_val
 		set error_message to validate_data(entered_data)
 	end repeat

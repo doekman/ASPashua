@@ -107,6 +107,9 @@ on _parse_pashua_result_line(result_line)
 		set value_string to "" --use empty string, because missing value won't show up in record
 	else
 		set value_string to text (pos + 1) thru (length of result_line) of result_line
+		if value_string contains "[return]" then
+			set value_string to replace_text("[return]", linefeed, value_string)
+		end if
 	end if
 	return {key_string, value_string}
 end _parse_pashua_result_line
@@ -150,7 +153,12 @@ on key_value_to_config_line(key_text, value_text)
 	else
 		set config_line to key_text & ".default="
 	end if
-	--TODO: smart processing of linefeed/return to "\n" and/or "[return]"?
+	if value_text contains return then
+		set value_text to replace_text(return, "[return]", value_text)
+	end if
+	if value_text contains linefeed then
+		set value_text to replace_text(linefeed, "[return]", value_text)
+	end if
 	set config_line to config_line & value_text
 	return config_line
 end key_value_to_config_line
