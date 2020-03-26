@@ -20,11 +20,11 @@ To do this:
 Now you can run the supplied examples.
 
 
-Version 0.4 (unreleased)
-------------------------
+Version 0.4
+-----------
 
 * multiple line support for `dynamic values`. New lines will automatically be translated to `[return]` and vice versa.
-* Enhanced description in the Dictionary
+* description in the Dictionary is more detailed now
 
 
 Version 0.3
