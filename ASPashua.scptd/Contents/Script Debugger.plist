@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>SD4Version</key>
-	<string>7.0.10</string>
+	<string>7.0.12</string>
 	<key>SD5ConversionOffered</key>
 	<false/>
 	<key>SDAddUsedLibrariesOnExport</key>
@@ -25,11 +25,11 @@
 		<string>record_result as record</string>
 	</array>
 	<key>SDFolds</key>
-	<string>YnBsaXN0MDDUAQIDBAUGFBVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0
-b3ASAAGGoKMHCA1VJG51bGzSCQoLDFpOUy5vYmplY3RzViRjbGFzc6CAAtIODxAR
-WiRjbGFzc25hbWVYJGNsYXNzZXNeTlNNdXRhYmxlQXJyYXmjEBITV05TQXJyYXlY
-TlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLRFhdUcm9vdIABCBEaIy0yNztBRlFY
-WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
+	<string>YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVj
+dHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwRVSRudWxs0g0O
+DxBaTlMub2JqZWN0c1YkY2xhc3OggALSEhMUFVokY2xhc3NuYW1lWCRjbGFzc2Vz
+Xk5TTXV0YWJsZUFycmF5oxQWF1dOU0FycmF5WE5TT2JqZWN0CBEaJCkyN0lMUVNX
+XWJtdHV3fIeQn6OrAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 	<key>SDHideCodeFolding</key>
 	<false/>
 	<key>SDPersistentGlobals</key>
@@ -44,7 +44,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 		<real>0.80000001192092896</real>
 		<key>viewControllers</key>
 		<dict>
-			<key>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</key>
+			<key>D7762D11-0796-435A-AA38-5B3FAB6ABB70-15644-00005A03C6583C35</key>
 			<dict>
 				<key>debuggerViewState</key>
 				<dict>
@@ -71,9 +71,9 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>3</key>
 							<array>
-								<integer>355</integer>
-								<integer>458</integer>
-								<integer>179</integer>
+								<integer>316</integer>
+								<integer>409</integer>
+								<integer>159</integer>
 							</array>
 							<key>5</key>
 							<array>
@@ -219,8 +219,8 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<dict>
 							<key>2</key>
 							<array>
-								<integer>442</integer>
-								<integer>851</integer>
+								<integer>441</integer>
+								<integer>852</integer>
 							</array>
 						</dict>
 					</dict>
@@ -242,7 +242,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 								<key>length</key>
 								<integer>0</integer>
 								<key>location</key>
-								<integer>6075</integer>
+								<integer>4447</integer>
 							</dict>
 						</array>
 						<key>LNSTextViewShowInvisibles</key>
@@ -254,7 +254,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 						<key>LNSTextViewWrapLines</key>
 						<false/>
 						<key>LNSVisibleRect</key>
-						<string>{{0, 1756}, {1221, 1261}}</string>
+						<string>{{0, 952.5}, {1221, 1261}}</string>
 						<key>ShowLineNumbers</key>
 						<false/>
 						<key>showCodeCoverage</key>
@@ -281,7 +281,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>tabsHidden</key>
 				<false/>
 				<key>windowControllerID</key>
-				<string>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</string>
+				<string>D7762D11-0796-435A-AA38-5B3FAB6ABB70-15644-00005A03C6583C35</string>
 				<key>windowFrame</key>
 				<string>0 53 1707 1364 0 0 2560 1417 </string>
 			</dict>
@@ -292,7 +292,7 @@ WVtga3SDh4+Yqq2yAAAAAAAAAQEAAAAAAAAAGAAAAAAAAAAAAAAAAAAAALQ=</string>
 				<key>controllerClass</key>
 				<string>ScriptWindowController</string>
 				<key>controllerID</key>
-				<string>362272E1-E620-4C09-A41C-4B7B33B1F368-93037-000044E8E1E71C40</string>
+				<string>D7762D11-0796-435A-AA38-5B3FAB6ABB70-15644-00005A03C6583C35</string>
 				<key>controllerState</key>
 				<dict>
 					<key>miniaturized</key>

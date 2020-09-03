@@ -93,7 +93,13 @@ on _ini_to_dictionary(ini_lines as list)
 	set result_dictionary to current application's NSMutableDictionary's dictionaryWithCapacity:number_of_lines
 	repeat with text_line in ini_lines
 		set {key_string, value_string} to _parse_pashua_result_line(text_line)
-		(result_dictionary's setValue:value_string forKey:key_string)
+		-- Workaround a Pashua bug: https://github.com/doekman/ASPashua/issues/4
+		if key_string is not missing value then
+			set current_value to (result_dictionary's objectForKey:key_string)
+			if current_value is missing value then
+				(result_dictionary's setValue:value_string forKey:key_string)
+			end if
+		end if
 	end repeat
 	return result_dictionary
 end _ini_to_dictionary
@@ -102,14 +108,19 @@ on _parse_pashua_result_line(result_line)
 	local post, key_string, value_string
 
 	set pos to offset of "=" in result_line
-	set key_string to text 1 thru (pos - 1) of result_line
-	if (count of result_line) ≤ pos then
-		set value_string to "" --use empty string, because missing value won't show up in record
-	else
-		set value_string to text (pos + 1) thru (length of result_line) of result_line
-		if value_string contains "[return]" then
-			set value_string to replace_text("[return]", linefeed, value_string)
+	if pos ≥ 2 then -- "=" is found, and the length of the key left to the equal sign is at least one
+		set key_string to text 1 thru (pos - 1) of result_line
+		if (length of result_line) ≤ pos then --line ends with an equal-sign
+			set value_string to "" --use empty string, because missing value won't show up in record
+		else
+			set value_string to text (pos + 1) thru (length of result_line) of result_line
+			if value_string contains "[return]" then
+				set value_string to replace_text("[return]", linefeed, value_string)
+			end if
 		end if
+	else -- Workaround a Pashua bug: https://github.com/doekman/ASPashua/issues/4
+		set key_string to missing value
+		set value_string to result_line
 	end if
 	return {key_string, value_string}
 end _parse_pashua_result_line
