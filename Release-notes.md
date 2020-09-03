@@ -25,13 +25,10 @@ Version 0.5dev
 
 Unreleased; changes:
 
-* Made a workaround for a bug in Pashua, where you paste multiple lines into a `textfield`
-
-TODO:
-
-* When Safari uncompresses `ASPashua-0.4-embed.zip` or `ASPashua-0.4.zip`, it will name the resulting folder as `ASPashua-0`. So fix this by using an other naming scheme (`0_4` as version?)
-* When following the instructions, the quarantine-flag is not removed.
-* When embedding Pashau, try this: https://www.bluem.net/pashua-docs-latest.html#faq.dockicon so the Pashua icon won't show when you are actually running an AppleScript program.
+* Made a workaround for a bug in Pashua, where you paste multiple lines into a `textfield`.
+* Added a PDF version of the release notes to the release zip-file.
+* Fixed naming issue with archives:
+	- When Safari uncompresses `ASPashua-0.4-embed.zip` or `ASPashua-0.4.zip`, it will name the resulting folder as `ASPashua-0`. The period (`.`) in the version number is replaced by an underscore (`_`), producing `ASPashua-0_5-embed.zip` and `ASPashua-0_5.zip`.
 
 
 Version 0.4
@@ -49,3 +46,9 @@ Version 0.3
 Released 2020-02-12; changes:
 
 * Initial public release
+
+<style>
+	code {
+		font-size:80%;
+	}
+</style>
