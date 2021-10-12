@@ -12,7 +12,7 @@ embed_suffix:=$(shell if [[ $$EMBED_PASHUA = 1 ]]; then echo "-embed"; else echo
 lib_ver:=$(shell defaults read "$(LIBSOURCE)/Contents/Info.plist" "CFBundleShortVersionString" | sed 's/[.]/_/g')
 zip_file:="$(BUILD)/ASPashua-$(lib_ver)$(embed_suffix).zip"
 help:
-	@echo "Targets: build, sign, clean, install, uninstall."
+	@echo "Targets: build, sign, zip, clean, install, uninstall."
 	@echo "Setting: embed=${embed}; version=${lib_ver}."
 	@echo "Zip-file: $(zip_file)"
 build:
@@ -46,7 +46,7 @@ zip: sign
 		echo "- removing old zip-file";\
 		rm -f $(zip_file);\
 	fi
-	@cd build;zip -r "$(zip_file)" "./$(NAME).scptd" "./$(REL_NOT)" "./$(EXAMPLES)"
+	@cd build;zip -r "$(zip_file)" "./$(NAME).scptd" "./$(REL_NOT)".pdf "./$(EXAMPLES)"
 clean:
 	@echo "Cleaning..."
 	@if [[ -d "${BUILD}" ]]; then rm -Rf "${BUILD}"; fi
